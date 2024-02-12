@@ -20,6 +20,7 @@ def login_and_registration():
 
 @app.route("/register", methods=["POST"])
 def register_user():
+    print(request.json)
     data = {
         "first_name": request.json["firstName"],
         "last_name": request.json["lastName"],
@@ -34,6 +35,7 @@ def register_user():
     else:
         session.clear()
         pw_hash = bcrypt.generate_password_hash(request.json['password'])
+        print("pw_hash:", pw_hash)
         data["password"] = pw_hash
         user_id = user.User.save(data)
         current_user = user.User.get_one({"id": user_id})

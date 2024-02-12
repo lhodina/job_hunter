@@ -74,7 +74,7 @@ class User:
             messages.append("Email must be in the following format: beeblebrox@galaxy.gov")
         query = "SELECT * FROM users WHERE email = %(email)s;"
         data = {"email": user["email"]}
-        res = connectToMySQL("movie_notebook").query_db(query, data)
+        res = connectToMySQL("job_hunter").query_db(query, data)
         if res:
             messages.append("Email already in use")
         if not user["password"]:
@@ -95,7 +95,7 @@ class User:
             messages.append("Email must be in the following format: beeblebrox@galaxy.gov")
         else:
             query = "SELECT * FROM users WHERE email = %(email)s;"
-            result = connectToMySQL("movie_notebook").query_db(query, {"email": data["email"]})
+            result = connectToMySQL("job_hunter").query_db(query, {"email": data["email"]})
             current_user = None
             if not result:
                 messages.append("Email not found")
