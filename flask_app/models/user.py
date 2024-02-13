@@ -106,3 +106,13 @@ class User:
         if not data["password"]:
             messages.append("Password required")
         return messages
+
+
+    @classmethod
+    def get_all_user_content(cls, data):
+        query = """
+            SELECT * FROM tags
+            LEFT JOIN links ON links.user_id = %(user_id)s
+            WHERE tags.user_id = %(user_id)s OR tags.user_id = 1;
+        """
+        return connectToMySQL(cls.DB).query_db(query, data)

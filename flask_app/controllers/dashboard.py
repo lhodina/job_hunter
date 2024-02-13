@@ -1,6 +1,6 @@
 from flask import redirect, request, session
 from flask_app import app
-from flask_app.models import category, tag
+from flask_app.models import user, category, tag, link
 
 @app.route("/dashboard")
 def dashboard():
@@ -11,17 +11,46 @@ def dashboard():
         data = {
             "user_id": session["user"]["id"]
         }
-        print("data: ", data)
-        all_categories = category.Category.get_all_categories()
-        all_tags = tag.Tag.get_all_tags(data)
-        # user_links = link.Link.get_user_links(data)
-        print("***** all_categories: ", all_categories)
-        print()
-        print("***** all_tags: ", all_tags)
-        print()
-        # print("***** all_user_links: ", all_user_links)
+
+        categories = [
+            {"id": 1, "name": "Interests"},
+            {"id": 2, "name": "Contacts"},
+            {"id": 3, "name": "Companies"},
+            {"id": 4, "name": "Locations"},
+        ]
+
+        tags = []
+        links = []
+        tag_names = []
+        link_text = []
+
+        all_user_content = user.User.get_all_user_content(data)
+        for item in all_user_content:
+            print(item)
+            print("")
+            if (item["text"] not in tag_names):
+                tag_names.append(item["text"])
+                tags.append({
+                    "id": item["id"],
+                    "text": item["text"],
+                    "user_id": item["user_id"],
+                    "category_id": item["category_id"]
+                })
+            if (item["links.text"] not in link_text):
+                link_text.append(item["links.text"])
+                links.append({
+                    "id": item["links.id"],
+                    "text": item["links.text"],
+                    "url": item["url"],
+                    "category_id": item["links.category_id"],
+                    "user_id": item["links.user_id"]
+                })
+
         return {
             "user_id": session["user"]["id"],
             "user_first_name": session["user"]["first_name"],
-            "user_last_name": session["user"]["last_name"]
+            "user_last_name": session["user"]["last_name"],
+            "categories": categories,
+            "tags": tags,
+            "links": links
         }

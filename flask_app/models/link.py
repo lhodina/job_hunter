@@ -24,7 +24,7 @@ class Link:
         all_links = []
         query = """
         SELECT * FROM links
-        WHERE user_id = %(id)s;
+        WHERE user_id = %(user_id)s;
         """
         results = connectToMySQL(cls.DB).query_db(query, data)
         for result in results:

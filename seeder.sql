@@ -63,3 +63,9 @@
 -- ("Raleigh-Durham", 1, 4),
 -- ("Portland OR", 1, 4);
 
+-- INSERT INTO links (text, url, category_id, user_id)
+-- VALUES
+-- ("TechCrunch Seance with Steve Jobs", "www.techcrunch.com/archives/coolseance", 3, 2),
+-- ("Sleepless in Seattle", "www.theverge.com/places/seattle", 4, 2),
+-- ("Evan Stevens", "www.linkedin.com/my-network/userdiddledeedoo", 2, 2),
+-- ("Warrantless Spy Tech", "www.nsa.gov/icu-online-certificate", 1, 2);
