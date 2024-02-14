@@ -19,7 +19,7 @@ def dashboard():
             {"id": 4, "name": "Locations"},
         ]
 
-        tags = []
+        all_tags = []
         links = []
         tag_names = []
         link_text = []
@@ -30,7 +30,7 @@ def dashboard():
             print("")
             if (item["text"] not in tag_names):
                 tag_names.append(item["text"])
-                tags.append({
+                all_tags.append({
                     "id": item["id"],
                     "text": item["text"],
                     "user_id": item["user_id"],
@@ -45,12 +45,26 @@ def dashboard():
                     "category_id": item["links.category_id"],
                     "user_id": item["links.user_id"]
                 })
+        interests = list(filter(lambda d: d["category_id"] == 1, all_tags))
+        contacts = list(filter(lambda d: d["category_id"] == 2, links))
+        companies = list(filter(lambda d: d["category_id"] == 3, all_tags))
+        locations = list(filter(lambda d: d["category_id"] == 4, all_tags))
+
+        # print("interests: ", interests)
+        # print("contacts: ", contacts)
+        # print("companies: ", companies)
+        # print("locations: ", locations)
+
 
         return {
             "user_id": session["user"]["id"],
             "user_first_name": session["user"]["first_name"],
             "user_last_name": session["user"]["last_name"],
             "categories": categories,
-            "tags": tags,
-            "links": links
+            "all_tags": all_tags,
+            "links": links,
+            "interests": interests,
+            "contacts": contacts,
+            "companies": companies,
+            "locations": locations
         }
