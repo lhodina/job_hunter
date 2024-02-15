@@ -13,6 +13,7 @@ def login_and_registration():
             "authorization_message": session["authorization_message"]
         }
     else:
+        print("loggin in")
         return {
             "message": "loggin' on in, friend!"
         }
