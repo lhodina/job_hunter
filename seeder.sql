@@ -47,7 +47,6 @@
 -- ("Google", 1, 3),
 -- ("Oracle", 1, 3);
 
-
 -- INSERT INTO tags(text, user_id, category_id)
 -- VALUES
 -- ("San Francisco Bay Area", 1, 4),
@@ -69,3 +68,21 @@
 -- ("Sleepless in Seattle", "www.theverge.com/places/seattle", 4, 2),
 -- ("Evan Stevens", "www.linkedin.com/my-network/userdiddledeedoo", 2, 2),
 -- ("Warrantless Spy Tech", "www.nsa.gov/icu-online-certificate", 1, 2);
+
+-- INSERT INTO notes (text, user_id)
+-- VALUES
+-- ("What's all the buzz about?", 2),
+-- ("What's the point?", 2),
+-- ("Will I be selling my soul?", 2),
+-- ("Can I afford to move here?", 2);
+
+-- INSERT INTO tags_join_notes(tag_id, note_id)
+-- VALUES
+-- (1, 1),
+-- (28, 3),
+-- (37, 4);
+
+-- UPDATE links
+-- SET note_id = 2
+-- WHERE id = 3;
+
