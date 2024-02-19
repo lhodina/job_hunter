@@ -50,12 +50,6 @@ def dashboard():
         companies = list(filter(lambda d: d["category_id"] == 3, all_tags))
         locations = list(filter(lambda d: d["category_id"] == 4, all_tags))
 
-        # print("interests: ", interests)
-        # print("contacts: ", contacts)
-        # print("companies: ", companies)
-        # print("locations: ", locations)
-
-
         return {
             "user_id": session["user"]["id"],
             "user_first_name": session["user"]["first_name"],

@@ -86,3 +86,17 @@
 -- SET note_id = 2
 -- WHERE id = 3;
 
+-- INSERT INTO tags_join_tags(tag_id_1, tag_id_2, user_id)
+-- VALUES
+-- (1, 32, 2),
+-- (33, 35, 2),
+-- (2, 4, 2),
+-- (1, 4, 2),
+-- (1, 15, 2),
+-- (33, 37, 2);
+
+-- INSERT INTO tags_join_tags(tag_id_1, tag_id_2, user_id)
+-- VALUES
+-- (1, 19, 3),
+-- (1, 18, 3),
+-- (33, 39, 3);
