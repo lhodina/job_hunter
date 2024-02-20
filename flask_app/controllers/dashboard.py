@@ -49,7 +49,6 @@ def dashboard():
         contacts = list(filter(lambda d: d["category_id"] == 2, links))
         companies = list(filter(lambda d: d["category_id"] == 3, all_tags))
         locations = list(filter(lambda d: d["category_id"] == 4, all_tags))
-
         return {
             "user_id": session["user"]["id"],
             "user_first_name": session["user"]["first_name"],

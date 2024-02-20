@@ -67,6 +67,10 @@
 -- ("TechCrunch Seance with Steve Jobs", "www.techcrunch.com/archives/coolseance", 3, 2),
 -- ("Sleepless in Seattle", "www.theverge.com/places/seattle", 4, 2),
 -- ("Evan Stevens", "www.linkedin.com/my-network/userdiddledeedoo", 2, 2),
+-- ("Freduardo Uilliams", "www.linkedin.com/my-network/fredu", 2, 2),
+-- ("Bonko Squilius-Timms", "www.linkedin.com/my-network/bsquilius", 2, 2),
+-- ("Chorp Dunkaroo", "www.linkedin.com/my-network/chorpdunk", 2, 2),
+-- ("Tillahassy Quinkton", "www.linkedin.com/my-network/tillyquinks", 2, 3);
 -- ("Warrantless Spy Tech", "www.nsa.gov/icu-online-certificate", 1, 2);
 
 -- INSERT INTO notes (text, user_id)
@@ -100,3 +104,27 @@
 -- (1, 19, 3),
 -- (1, 18, 3),
 -- (33, 39, 3);
+
+-- INSERT INTO tags(text, user_id, category_id)
+-- VALUES
+-- ("Drones", 2, 1),
+-- ("Dancing Robots", 2, 1),
+-- ("Robotics", 2, 1),
+-- ("CIA", 2, 3),
+-- ("ACME", 2, 3),
+-- ("Def Jam Recordings", 2, 3),
+-- ("Moon Station", 2, 4),
+-- ("Detroit", 2, 4),
+-- ("Neverland Ranch", 2, 4);
+
+-- INSERT INTO tags(text, user_id, category_id)
+-- VALUES
+-- ("Turn Tables", 3, 1),
+-- ("Disco Tech", 3, 1),
+-- ("Audio Recording", 3, 1),
+-- ("Cheers", 3, 3),
+-- ("S.P.E.C.T.R.E.", 3, 3),
+-- ("City of New York Department of Sanitation", 3, 3),
+-- ("Wonka Chocolate Factory", 3, 4),
+-- ("Yonkers", 3, 4),
+-- ("Atlantis", 3, 4);
