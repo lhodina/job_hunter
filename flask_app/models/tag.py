@@ -35,31 +35,13 @@ class Tag:
     @classmethod
     def get_one(cls, data):
         query = """
-        SELECT * FROM tags
-        WHERE tags.id = %(tag_id)s;
+            SELECT * FROM tags
+            LEFT JOIN links_join_tags ON links_join_tags.tag_id = tags.id
+            LEFT JOIN links ON links.id = links_join_tags.link_id
+            LEFT JOIN tags_join_tags ON tags_join_tags.tag_id_1 = tags.id
+            LEFT JOIN tags AS related_tags ON related_tags.id = tags_join_tags.tag_id_2
+            LEFT JOIN tags_join_notes ON tags_join_notes.tag_id = %(user_id)s
+            LEFT JOIN notes ON notes.id = tags_join_notes.note_id
+            WHERE tags.id = %(tag_id)s;
         """
-        return connectToMySQL(cls.DB).query_db(query, data)[0]
-
-    @classmethod
-    def get_tag_links(cls, data):
-        tag_links = []
-        query = """
-        SELECT * FROM links
-        JOIN links_join_tags ON links_join_tags.link_id = links.id
-        JOIN tags ON tags.id = link_join_tags.tag_id
-        WHERE tags.id = %(tag_id)s;
-        """
-        results = connectToMySQL(cls.DB).query_db(query, data)
-        for result in results:
-            current_link_data = {
-                "id": result["id"],
-                "text": result["text"],
-                "url": result["url"],
-                "created_at": result["created_at"],
-                "updated_at": result["updated_at"],
-                "user_id": result["user_id"],
-                "category_id": result["category_id"]
-            }
-            current_link = link.Link(current_link_data)
-            tag_links.append(current_link)
-        return tag_links
+        return connectToMySQL(cls.DB).query_db(query, data)

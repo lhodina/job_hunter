@@ -113,6 +113,6 @@ class User:
         query = """
             SELECT * FROM tags
             LEFT JOIN links ON links.user_id = %(user_id)s
-            WHERE tags.user_id = %(user_id)s OR tags.user_id = 1;
+            WHERE tags.user_id = %(user_id)s;
         """
         return connectToMySQL(cls.DB).query_db(query, data)

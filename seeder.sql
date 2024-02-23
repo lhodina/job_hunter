@@ -8,7 +8,7 @@
 
 -- INSERT INTO tags(text, user_id, category_id)
 -- VALUES
--- ("AI (Artificial Intelligence)", 1, 1),
+-- ("AI", 1, 1),
 -- ("ML (Machine Learning)", 1, 1),
 -- ("LLM (Large Language Models)", 1, 1),
 -- ("Python", 1, 1),
@@ -64,21 +64,21 @@
 
 -- INSERT INTO links (text, url, category_id, user_id)
 -- VALUES
--- ("TechCrunch Seance with Steve Jobs", "www.techcrunch.com/archives/coolseance", 3, 2),
--- ("Sleepless in Seattle", "www.theverge.com/places/seattle", 4, 2),
--- ("Evan Stevens", "www.linkedin.com/my-network/userdiddledeedoo", 2, 2),
--- ("Freduardo Uilliams", "www.linkedin.com/my-network/fredu", 2, 2),
--- ("Bonko Squilius-Timms", "www.linkedin.com/my-network/bsquilius", 2, 2),
--- ("Chorp Dunkaroo", "www.linkedin.com/my-network/chorpdunk", 2, 2),
--- ("Tillahassy Quinkton", "www.linkedin.com/my-network/tillyquinks", 2, 3);
+-- ("TechCrunch Seance with Steve Jobs", "www.techcrunch.com/archives/coolseance", 3, 1),
+-- ("Sleepless in Seattle", "www.theverge.com/places/seattle", 4, 1),
+-- ("Evan Stevens", "www.linkedin.com/my-network/userdiddledeedoo", 2, 1),
+-- ("Freduardo Uilliams", "www.linkedin.com/my-network/fredu", 2, 1),
+-- ("Bonko Squilius-Timms", "www.linkedin.com/my-network/bsquilius", 2, 1),
+-- ("Chorp Dunkaroo", "www.linkedin.com/my-network/chorpdunk", 2, 1),
+-- ("Tillahassy Quinkton", "www.linkedin.com/my-network/tillyquinks", 2, 2),
 -- ("Warrantless Spy Tech", "www.nsa.gov/icu-online-certificate", 1, 2);
 
 -- INSERT INTO notes (text, user_id)
 -- VALUES
--- ("What's all the buzz about?", 2),
--- ("What's the point?", 2),
--- ("Will I be selling my soul?", 2),
--- ("Can I afford to move here?", 2);
+-- ("What's all the buzz about?", 1),
+-- ("What's the point?", 1),
+-- ("Will I be selling my soul?", 1),
+-- ("Can I afford to move here?", 1);
 
 -- INSERT INTO tags_join_notes(tag_id, note_id)
 -- VALUES
@@ -90,41 +90,39 @@
 -- SET note_id = 2
 -- WHERE id = 3;
 
--- INSERT INTO tags_join_tags(tag_id_1, tag_id_2, user_id)
+-- INSERT INTO tags(text, user_id, category_id)
 -- VALUES
--- (1, 32, 2),
--- (33, 35, 2),
--- (2, 4, 2),
--- (1, 4, 2),
--- (1, 15, 2),
--- (33, 37, 2);
-
--- INSERT INTO tags_join_tags(tag_id_1, tag_id_2, user_id)
--- VALUES
--- (1, 19, 3),
--- (1, 18, 3),
--- (33, 39, 3);
+-- ("Drones", 1, 1),
+-- ("Dancing Robots", 1, 1),
+-- ("Robotics", 1, 1),
+-- ("CIA", 1, 3),
+-- ("ACME", 1, 3),
+-- ("Def Jam Recordings", 1, 3),
+-- ("Moon Station", 1, 4),
+-- ("Detroit", 1, 4),
+-- ("Neverland Ranch", 1, 4);
 
 -- INSERT INTO tags(text, user_id, category_id)
 -- VALUES
--- ("Drones", 2, 1),
--- ("Dancing Robots", 2, 1),
--- ("Robotics", 2, 1),
--- ("CIA", 2, 3),
--- ("ACME", 2, 3),
--- ("Def Jam Recordings", 2, 3),
--- ("Moon Station", 2, 4),
--- ("Detroit", 2, 4),
--- ("Neverland Ranch", 2, 4);
+-- ("Turn Tables", 2, 1),
+-- ("Disco Tech", 2, 1),
+-- ("Audio Recording", 2, 1),
+-- ("Cheers", 2, 3),
+-- ("S.P.E.C.T.R.E.", 2, 3),
+-- ("City of New York Department of Sanitation", 2, 3),
+-- ("Wonka Chocolate Factory", 2, 4),
+-- ("Yonkers", 2, 4),
+-- ("Atlantis", 2, 4);
 
--- INSERT INTO tags(text, user_id, category_id)
+-- INSERT INTO links_join_tags(link_id, tag_id)
 -- VALUES
--- ("Turn Tables", 3, 1),
--- ("Disco Tech", 3, 1),
--- ("Audio Recording", 3, 1),
--- ("Cheers", 3, 3),
--- ("S.P.E.C.T.R.E.", 3, 3),
--- ("City of New York Department of Sanitation", 3, 3),
--- ("Wonka Chocolate Factory", 3, 4),
--- ("Yonkers", 3, 4),
--- ("Atlantis", 3, 4);
+-- (3, 1),
+-- (6, 1),
+-- (3, 2),
+-- (6, 2);
+
+-- INSERT INTO tags_join_tags(tag_id_1, tag_id_2)
+-- VALUES
+-- (1, 4),
+-- (1, 15),
+-- (1, 32);
