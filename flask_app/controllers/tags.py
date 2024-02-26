@@ -14,8 +14,8 @@ def get_tag(tag_id):
 
     related_tags = []
     related_tag_ids = []
-    links = []
-    link_ids = []
+    all_links = []
+    all_link_ids = []
     notes = []
     notes_ids = []
 
@@ -31,15 +31,15 @@ def get_tag(tag_id):
             relatedTag["user_id"] = item["user_id"]
             relatedTag["category_id"] = item["related_tags.category_id"]
             related_tags.append(relatedTag)
-        if (item["links.id"] and item["links.id"] not in link_ids):
-            link_ids.append(item["links.id"])
+        if (item["links.id"] and item["links.id"] not in all_link_ids):
+            all_link_ids.append(item["links.id"])
             currentLink = {}
             currentLink["id"] = item["links.id"]
             currentLink["text"] = item["links.text"]
             currentLink["url"] = item["url"]
             currentLink["category_id"] = item["links.category_id"]
             currentLink["user_id"] = item["links.user_id"]
-            links.append(currentLink)
+            all_links.append(currentLink)
         if (item["notes.id"] and item["notes.id"] not in notes_ids):
             notes_ids.append(item["notes.id"])
             currentNote = {}
@@ -48,10 +48,9 @@ def get_tag(tag_id):
             currentNote["user_id"] = item["notes.user_id"]
             notes.append(currentNote)
 
-
-
-    # print("links: ", links)
-    print("notes: ", notes)
+    print("all_links: ", all_links)
+    contacts = list(filter(lambda d: d["category_id"] == 2, all_links))
+    user_links = list(filter(lambda d: d["category_id"] != 2, all_links))
 
     return {
         "user_id": user_id,
@@ -59,6 +58,7 @@ def get_tag(tag_id):
         "last_name": session["user"]["last_name"],
         "text": current_tag[0]["text"],
         "related_tags": related_tags,
-        "links": links,
+        "user_links": user_links,
+        "contacts": contacts,
         "notes": notes
     }

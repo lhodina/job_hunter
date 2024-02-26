@@ -64,14 +64,26 @@
 
 -- INSERT INTO links (text, url, category_id, user_id)
 -- VALUES
--- ("TechCrunch Seance with Steve Jobs", "www.techcrunch.com/archives/coolseance", 3, 1),
--- ("Sleepless in Seattle", "www.theverge.com/places/seattle", 4, 1),
+-- ("TechCrunch Seance with Steve Jobs", "www.techcrunch.com/archives/coolseance", null, 1),
+-- ("Sleepless in Seattle", "www.theverge.com/places/seattle", null, 1),
 -- ("Evan Stevens", "www.linkedin.com/my-network/userdiddledeedoo", 2, 1),
 -- ("Freduardo Uilliams", "www.linkedin.com/my-network/fredu", 2, 1),
 -- ("Bonko Squilius-Timms", "www.linkedin.com/my-network/bsquilius", 2, 1),
 -- ("Chorp Dunkaroo", "www.linkedin.com/my-network/chorpdunk", 2, 1),
 -- ("Tillahassy Quinkton", "www.linkedin.com/my-network/tillyquinks", 2, 2),
--- ("Warrantless Spy Tech", "www.nsa.gov/icu-online-certificate", 1, 2);
+-- ("Warrantless Spy Tech", "www.nsa.gov/icu-online-certificate", null, 2);
+
+-- INSERT INTO links(text, url, category_id, user_id, note_id)
+-- VALUES
+-- ("What's this AI craze anyhow?", "www.oldmanreviews.net/tech", null, 1, null),
+-- ("Is AI a sin? Probably", "www.catholictimes.vc/sin", null, 1, null),
+-- ("AI Erases My Identity", "www.huffpo.com/problematic", null, 1, null);
+
+-- INSERT INTO links_join_tags(link_id, tag_id)
+-- VALUES
+-- (9, 1),
+-- (10, 1),
+-- (11, 1);
 
 -- INSERT INTO notes (text, user_id)
 -- VALUES
