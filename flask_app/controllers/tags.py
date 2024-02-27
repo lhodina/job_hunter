@@ -49,15 +49,19 @@ def get_tag(tag_id):
             notes.append(currentNote)
 
     print("all_links: ", all_links)
+    # print("related_tags: ", related_tags)
     contacts = list(filter(lambda d: d["category_id"] == 2, all_links))
     user_links = list(filter(lambda d: d["category_id"] != 2, all_links))
+    interests = list(filter(lambda d: d["category_id"] == 1, related_tags))
+    companies = list(filter(lambda d: d["category_id"] == 3, related_tags))
 
     return {
         "user_id": user_id,
         "first_name": session["user"]["first_name"],
         "last_name": session["user"]["last_name"],
         "text": current_tag[0]["text"],
-        "related_tags": related_tags,
+        "interests": interests,
+        "companies": companies,
         "user_links": user_links,
         "contacts": contacts,
         "notes": notes
