@@ -37,6 +37,7 @@ def get_tag(tag_id):
             currentLink["id"] = item["links.id"]
             currentLink["text"] = item["links.text"]
             currentLink["url"] = item["url"]
+            currentLink["description"] = item["description"]
             currentLink["category_id"] = item["links.category_id"]
             currentLink["user_id"] = item["links.user_id"]
             all_links.append(currentLink)
