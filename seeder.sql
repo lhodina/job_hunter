@@ -86,9 +86,10 @@
 -- INSERT INTO notes (text, user_id)
 -- VALUES
 -- ("What's all the buzz about?", 1),
--- ("What's the point?", 1),
+-- ("I keep writing the word over and over again on social media, but so far it hasn't made me any money at all. Am I doing it wrong?", 1),
 -- ("Will I be selling my soul?", 1),
--- ("Can I afford to move here?", 1);
+-- ("Can I afford to move here?", 1),
+-- ("I must enquire as to the monetary value of the aforementioned Acronyme known variously as 'A.I.', 'AI', 'Artificial Intelligence', &c., &c., and as to the veracity of the claim that, if I may quote, 'AI is cool, I guess', made by my nephew, Winstable Chumminguggins, last November.", 1);
 
 
 -- INSERT INTO tags(text, user_id, category_id)
@@ -140,5 +141,8 @@
 -- VALUES
 -- (1, 1),
 -- (1, 2),
+-- (1, 5),
 -- (30, 3),
 -- (37, 4);
+
+
