@@ -20,9 +20,9 @@ def dashboard():
         ]
 
         all_tags = []
-        links = []
+        notes = []
         tag_names = []
-        link_text = []
+        note_ids = []
 
         all_user_content = user.User.get_all_user_content(data)
         for item in all_user_content:
@@ -36,17 +36,18 @@ def dashboard():
                     "user_id": item["user_id"],
                     "category_id": item["category_id"]
                 })
-            if (item["links.text"] not in link_text):
-                link_text.append(item["links.text"])
-                links.append({
-                    "id": item["links.id"],
-                    "text": item["links.text"],
-                    "url": item["url"],
-                    "category_id": item["links.category_id"],
-                    "user_id": item["links.user_id"]
+            if (item["notes.id"] not in note_ids):
+                note_ids.append(item["notes.id"])
+                notes.append({
+                    "id": item["notes.id"],
+                    "text": item["notes.text"],
+                    "link_text": item["link_text"],
+                    "link_url": item["link_url"],
+                    "category_id": item["notes.category_id"],
+                    "user_id": item["notes.user_id"]
                 })
         interests = list(filter(lambda d: d["category_id"] == 1, all_tags))
-        contacts = list(filter(lambda d: d["category_id"] == 2, links))
+        contacts = list(filter(lambda d: d["category_id"] == 2, notes))
         companies = list(filter(lambda d: d["category_id"] == 3, all_tags))
         locations = list(filter(lambda d: d["category_id"] == 4, all_tags))
         return {
@@ -55,7 +56,7 @@ def dashboard():
             "user_last_name": session["user"]["last_name"],
             "categories": categories,
             "all_tags": all_tags,
-            "links": links,
+            "notes": notes,
             "interests": interests,
             "contacts": contacts,
             "companies": companies,

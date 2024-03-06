@@ -36,8 +36,6 @@ class Tag:
     def get_one(cls, data):
         query = """
             SELECT * FROM tags
-            LEFT JOIN links_join_tags ON links_join_tags.tag_id = tags.id
-            LEFT JOIN links ON links.id = links_join_tags.link_id
             LEFT JOIN tags_join_tags ON tags_join_tags.tag_id_1 = tags.id
             LEFT JOIN tags AS related_tags ON related_tags.id = tags_join_tags.tag_id_2
             LEFT JOIN tags_join_notes ON tags_join_notes.tag_id = %(user_id)s

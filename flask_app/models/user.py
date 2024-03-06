@@ -112,7 +112,7 @@ class User:
     def get_all_user_content(cls, data):
         query = """
             SELECT * FROM tags
-            LEFT JOIN links ON links.user_id = %(user_id)s
+            LEFT JOIN notes ON notes.user_id = %(user_id)s
             WHERE tags.user_id = %(user_id)s;
         """
         return connectToMySQL(cls.DB).query_db(query, data)

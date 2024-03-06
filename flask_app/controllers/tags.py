@@ -14,10 +14,8 @@ def get_tag(tag_id):
 
     related_tags = []
     related_tag_ids = []
-    all_links = []
-    all_link_ids = []
     notes = []
-    notes_ids = []
+    note_ids = []
 
     for item in current_tag:
         print("")
@@ -31,28 +29,22 @@ def get_tag(tag_id):
             relatedTag["user_id"] = item["user_id"]
             relatedTag["category_id"] = item["related_tags.category_id"]
             related_tags.append(relatedTag)
-        if (item["links.id"] and item["links.id"] not in all_link_ids):
-            all_link_ids.append(item["links.id"])
-            currentLink = {}
-            currentLink["id"] = item["links.id"]
-            currentLink["text"] = item["links.text"]
-            currentLink["url"] = item["url"]
-            currentLink["description"] = item["description"]
-            currentLink["category_id"] = item["links.category_id"]
-            currentLink["user_id"] = item["links.user_id"]
-            all_links.append(currentLink)
-        if (item["notes.id"] and item["notes.id"] not in notes_ids):
-            notes_ids.append(item["notes.id"])
+        if (item["notes.id"] and item["notes.id"] not in note_ids):
+            note_ids.append(item["notes.id"])
             currentNote = {}
             currentNote["id"] = item["notes.id"]
             currentNote["text"] = item["notes.text"]
+            currentNote["link_text"] = item["link_text"]
+            currentNote["link_url"] = item["link_url"]
+            currentNote["category_id"] = item["notes.category_id"]
             currentNote["user_id"] = item["notes.user_id"]
             notes.append(currentNote)
 
-    print("all_links: ", all_links)
+
+    print("notes: ", notes)
     # print("related_tags: ", related_tags)
-    contacts = list(filter(lambda d: d["category_id"] == 2, all_links))
-    user_links = list(filter(lambda d: d["category_id"] != 2, all_links))
+    contacts = list(filter(lambda d: d["category_id"] == 2, notes))
+    user_notes = list(filter(lambda d: d["category_id"] != 2, notes))
     interests = list(filter(lambda d: d["category_id"] == 1, related_tags))
     companies = list(filter(lambda d: d["category_id"] == 3, related_tags))
 
@@ -63,7 +55,6 @@ def get_tag(tag_id):
         "text": current_tag[0]["text"],
         "interests": interests,
         "companies": companies,
-        "user_links": user_links,
         "contacts": contacts,
-        "notes": notes
+        "notes": user_notes
     }
