@@ -1,7 +1,7 @@
 from flask import redirect, request, session
 
 from flask_app import app
-from flask_app.models import user, tag, link
+from flask_app.models import tag
 
 @app.route("/tags/<int:tag_id>")
 def get_tag(tag_id):
@@ -18,9 +18,6 @@ def get_tag(tag_id):
     note_ids = []
 
     for item in current_tag:
-        print("")
-        print(item)
-        print("")
         if (item["related_tags.id"] and item["related_tags.id"] not in related_tag_ids):
             related_tag_ids.append(item["related_tags.id"])
             relatedTag = {}
@@ -40,9 +37,6 @@ def get_tag(tag_id):
             currentNote["user_id"] = item["notes.user_id"]
             notes.append(currentNote)
 
-
-    print("notes: ", notes)
-    # print("related_tags: ", related_tags)
     contacts = list(filter(lambda d: d["category_id"] == 2, notes))
     user_notes = list(filter(lambda d: d["category_id"] != 2, notes))
     interests = list(filter(lambda d: d["category_id"] == 1, related_tags))
@@ -58,3 +52,22 @@ def get_tag(tag_id):
         "contacts": contacts,
         "notes": user_notes
     }
+
+@app.route("/tags/<string:tagType>", methods=["POST"])
+def add_tag(tagType):
+    category_id = None
+    if (tagType == "Interest"):
+        category_id = 1
+    elif (tagType == "Company"):
+        category_id = 3
+    elif (tagType == "Location"):
+        category_id = 4
+    print("category_id: ", category_id)
+    data = {
+        "text": request.json["text"],
+        "category_id": category_id,
+        "user_id": session["user"]["id"]
+    }
+    res = tag.Tag.save(data)
+    print("res: ", res)
+    return {"id": res}

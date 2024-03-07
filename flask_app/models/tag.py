@@ -16,7 +16,7 @@ class Tag:
     def save(cls, data):
         query = """
         INSERT INTO tags(text, category_id, user_id)
-        VALUES ( %(name)s, %(category_id)s, %(user_id)s)
+        VALUES ( %(text)s, %(category_id)s, %(user_id)s)
         """
         return connectToMySQL(cls.DB).query_db(query, data)
 
