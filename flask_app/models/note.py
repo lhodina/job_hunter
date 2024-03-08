@@ -1,11 +1,12 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 
-class Link:
+class Note:
     DB = "job_hunter"
     def __init__(self, data):
         self.id = data['id']
         self.text = data['text']
-        self.url = data['url']
+        self.link_text = data['link_text']
+        self.link_url = data['link_url']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.user_id = data['user_id']
@@ -14,19 +15,19 @@ class Link:
     @classmethod
     def save(cls, data):
         query = """
-        INSERT INTO links(text, url, user_id, category_id)
-        VALUES ( %(text)s, %(url)s, %(user_id)s, %(category_id)s, )
+        INSERT INTO notes(text, link_text, link_url, user_id, category_id)
+        VALUES ( %(text)s, %(link_text)s, %(link_url)s, %(user_id)s, %(category_id)s );
         """
         return connectToMySQL(cls.DB).query_db(query, data)
 
     @classmethod
-    def get_user_links(cls, data):
-        all_links = []
+    def get_user_notes(cls, data):
+        all_notes = []
         query = """
-        SELECT * FROM links
+        SELECT * FROM notes
         WHERE user_id = %(user_id)s;
         """
         results = connectToMySQL(cls.DB).query_db(query, data)
         for result in results:
-            all_links.append(result)
-        return all_links
+            all_notes.append(result)
+        return all_notes

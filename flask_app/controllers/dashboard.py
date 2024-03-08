@@ -1,6 +1,6 @@
 from flask import redirect, request, session
 from flask_app import app
-from flask_app.models import user, category, tag, link
+from flask_app.models import note, user, category, tag
 
 @app.route("/dashboard")
 def dashboard():

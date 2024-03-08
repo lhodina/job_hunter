@@ -64,32 +64,19 @@
 -- ("Portland OR", 1, 4);
 
 
--- INSERT INTO links (text, url, description, category_id, user_id)
+-- INSERT INTO notes (text, link_text, link_url, user_id)
 -- VALUES
--- ("TechCrunch Seance with Steve Jobs", "www.techcrunch.com/archives/coolseance", "TechCrunch panel summons the spirit of Steve Jobs to discuss the Vision Pro", null, 1),
--- ("Sleepless in Seattle", "www.theverge.com/places/seattle", null, null, 1),
--- ("Evan Stevens", "www.linkedin.com/my-network/userdiddledeedoo", "Cool dude, knows a lot about TypeScript", 2, 1),
--- ("Freduardo Uilliams", "www.linkedin.com/my-network/fredu", null, 2, 1),
--- ("Bonko Squilius-Timms", "www.linkedin.com/my-network/bsquilius", null, 2, 1),
--- ("Chorp Dunkaroo", "www.linkedin.com/my-network/chorpdunk", null, 2, 1),
--- ("Tillahassy Quinkton", "www.linkedin.com/my-network/tillyquinks", null, 2, 2),
--- ("Warrantless Spy Tech", "www.nsa.gov/icu-online-certificate", null, null, 2);
-
-
--- INSERT INTO links(text, url, description, category_id, user_id)
--- VALUES
--- ("What's this AI craze anyhow?", "www.oldmanreviews.net/tech", "Leroy Bojangles wants to know what all the hoopla is about", null, 1),
--- ("Is AI a sin? Probably", "www.catholictimes.vc/sin", "Catholic intellectual meditates on AI as a mortal sin", null, 1),
--- ("AI Erases My Identity", "www.huffpo.com/problematic", "Courageous Huffington Post think piece gets me worked up", null, 1);
-
-
--- INSERT INTO notes (text, user_id)
--- VALUES
--- ("What's all the buzz about?", 1),
--- ("I keep writing the word over and over again on social media, but so far it hasn't made me any money at all. Am I doing it wrong?", 1),
--- ("Will I be selling my soul?", 1),
--- ("Can I afford to move here?", 1),
--- ("I must enquire as to the monetary value of the aforementioned Acronyme known variously as 'A.I.', 'AI', 'Artificial Intelligence', &c., &c., and as to the veracity of the claim that, if I may quote, 'AI is cool, I guess', made by my nephew, Winstable Chumminguggins, last November.", 1);
+-- ('“If I could go back, I probably wouldn’t have finished a master\’s degree,” he says. “You can easily teach yourself the skills and programs you need to work in AI online, and mastering those is what helps you stand out.”
+-- “It\’s not yet a highly professionalized field with role bands, career ladders and title progressions.” Kashef, a self-identified optimist, anticipates a future in which AI doesn\’t replace jobs, 
+-- but is woven into the fabric of existing jobs across a wide range of industries, rather than siloed into a separate category.
+-- "', "As AI creates more 6-figure, remote work opportunities, ‘the upside is high, but so are the risks,’ experts say", 
+-- "https://www.cnbc.com/2024/02/12/ai-is-creating-more-6-figure-remote-jobs-but-its-not-all-upside-experts-say.html", 1),
+-- ("We have developed a system that can infer and model human actions on computer applications, perform the actions reliably and quickly, and is well-suited for deployment in various AI assistants and operating systems. 
+-- Our system is called the Large Action Model (LAM). Enabled by recent advances in neuro-symbolic programming, the LAM allows for the direct modeling of the structure of various applications and user actions performed on them 
+-- without a transitory representation, such as text. The LAM system achieves results competitive with state-of-the-art approaches in terms of accuracy, interpretability, and speed. Engineering the LAM architecture involves 
+-- overcoming both research challenges and engineering complexities, from real-time communication to virtual network computing technologies. We hope that our efforts could help shape the next generation of 
+-- natural-language-driven consumer experiences.", "rabbit r1’s Large Action Model", "https://www.rabbit.tech/research", 1),
+-- ("Machine Learning Engineer would be the best fit title for you (and is the most interesting and highest-paying compared to other roles like Data Engineer", "", "", 1);
 
 
 -- INSERT INTO tags(text, user_id, category_id)
@@ -127,22 +114,15 @@
 -- (1, 32);
 
 
--- INSERT INTO links_join_tags(link_id, tag_id)
--- VALUES
--- (3, 1),
--- (6, 1),
--- (7, 1),
--- (9, 1),
--- (10, 1),
--- (11, 1);
-
-
 -- INSERT INTO tags_join_notes(tag_id, note_id)
 -- VALUES
 -- (1, 1),
 -- (1, 2),
--- (1, 5),
--- (30, 3),
--- (37, 4);
+-- (1, 3);
 
-
+-- INSERT INTO notes(text, user_id, link_text, link_url, category_id)
+-- VALUES
+-- ("Super nice guy from that developer meetup at the Holiday Inn", 1, "Heffalump Hill-Dale", "www.linkedin.com/contacts/Heffalum-Hill_Dale", 2),
+-- ("", 1, "Stumpula Quicks", "www.linkedin.com/contacts/stumpula-quicks", 2),
+-- ("Terrible date, great for talking about mixture of experts", 1, "Wanita Sportingoods", "www.linkedin.com/contacts/w_sportingoods", 2),
+-- ("", 2, "Tumper Effluvium", "www.linkedin.com/contacts/t_effluvium_12", 2);

@@ -1,5 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask_app.models import link
+from flask_app.models import note
 
 class Tag:
     DB = "job_hunter"
@@ -10,7 +10,6 @@ class Tag:
         self.updated_at = data['updated_at']
         self.category_id = data['category_id']
         self.user_id = data['user_id']
-        self.links = []
 
     @classmethod
     def save(cls, data):

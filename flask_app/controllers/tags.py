@@ -11,6 +11,15 @@ def get_tag(tag_id):
         "tag_id": tag_id
     }
     current_tag = tag.Tag.get_one(data)
+    category_id = current_tag[0]["category_id"]
+    category = None
+    if (category_id == 1):
+        category = "Interest"
+    elif (category_id == 3):
+        category = "Company"
+    elif (category_id == 4):
+        category = "Location"
+
 
     related_tags = []
     related_tag_ids = []
@@ -18,6 +27,7 @@ def get_tag(tag_id):
     note_ids = []
 
     for item in current_tag:
+        print(item)
         if (item["related_tags.id"] and item["related_tags.id"] not in related_tag_ids):
             related_tag_ids.append(item["related_tags.id"])
             relatedTag = {}
@@ -47,6 +57,7 @@ def get_tag(tag_id):
         "first_name": session["user"]["first_name"],
         "last_name": session["user"]["last_name"],
         "text": current_tag[0]["text"],
+        "category": category,
         "interests": interests,
         "companies": companies,
         "contacts": contacts,
