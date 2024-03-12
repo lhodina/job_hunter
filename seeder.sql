@@ -126,3 +126,9 @@
 -- ("", 1, "Stumpula Quicks", "www.linkedin.com/contacts/stumpula-quicks", 2),
 -- ("Terrible date, great for talking about mixture of experts", 1, "Wanita Sportingoods", "www.linkedin.com/contacts/w_sportingoods", 2),
 -- ("", 2, "Tumper Effluvium", "www.linkedin.com/contacts/t_effluvium_12", 2);
+
+-- INSERT INTO tags_join_notes(tag_id, note_id)
+-- VALUES
+-- (1, 4),
+-- (1, 5),
+-- (1, 6);

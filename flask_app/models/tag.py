@@ -34,11 +34,27 @@ class Tag:
     @classmethod
     def get_one(cls, data):
         query = """
-            SELECT * FROM tags
-            LEFT JOIN tags_join_tags ON tags_join_tags.tag_id_1 = tags.id
-            LEFT JOIN tags AS related_tags ON related_tags.id = tags_join_tags.tag_id_2
-            LEFT JOIN tags_join_notes ON tags_join_notes.tag_id = %(user_id)s
-            LEFT JOIN notes ON notes.id = tags_join_notes.note_id
-            WHERE tags.id = %(tag_id)s;
+        SELECT * FROM tags
+        LEFT JOIN tags_join_tags ON tags_join_tags.tag_id_1 = tags.id
+        LEFT JOIN tags AS related_tags ON related_tags.id = tags_join_tags.tag_id_2
+        LEFT JOIN tags_join_notes ON tags_join_notes.tag_id = %(user_id)s
+        LEFT JOIN notes ON notes.id = tags_join_notes.note_id
+        WHERE tags.id = %(tag_id)s;
+        """
+        return connectToMySQL(cls.DB).query_db(query, data)
+
+    @classmethod
+    def join_to_tag(cls, data):
+        query = """
+        INSERT INTO tags_join_tags(tag_id_1, tag_id_2)
+        VALUES (%(tag_id_1)s, %(tag_id_2)s);
+        """
+        return connectToMySQL(cls.DB).query_db(query, data)
+
+    @classmethod
+    def join_to_note(cls, data):
+        query = """
+        INSERT INTO tags_join_notes(tag_id, note_id)
+        VALUES (%(tag_id)s, %(note_id)s);
         """
         return connectToMySQL(cls.DB).query_db(query, data)

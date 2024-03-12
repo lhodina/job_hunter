@@ -64,6 +64,7 @@ def get_tag(tag_id):
         "notes": user_notes
     }
 
+
 @app.route("/tags/<string:tagType>", methods=["POST"])
 def add_tag(tagType):
     category_id = None
@@ -79,6 +80,18 @@ def add_tag(tagType):
         "category_id": category_id,
         "user_id": session["user"]["id"]
     }
-    res = tag.Tag.save(data)
-    print("res: ", res)
-    return {"id": res}
+    new_tag_id = tag.Tag.save(data)
+    print("new_tag_id: ", new_tag_id)
+
+    current_page_category = request.json["currentPageCategory"]
+    current_page_id = request.json["currentPageId"]
+    # print("current_page_category: ", current_page_category)
+    # print("current_page_id: ", current_page_id)
+    # After the new tag has been created, check if it is also being joined to an existing tag or note (contact):
+    if (current_page_category in ["Interest", "Company", "Location"]):
+        # Join tag with tag
+        tag.Tag.join_to_tag({"tag_id_1": current_page_id, "tag_id_2": new_tag_id})
+    if (current_page_category == "Contact"):
+        # Join tag with note
+        tag.Tag.join_to_note({"note_id": current_page_id, "tag_id": new_tag_id})
+    return {"id": new_tag_id}
