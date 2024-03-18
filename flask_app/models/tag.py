@@ -58,3 +58,20 @@ class Tag:
         VALUES (%(tag_id)s, %(note_id)s);
         """
         return connectToMySQL(cls.DB).query_db(query, data)
+
+    @classmethod
+    def update(cls, data):
+        query = """
+        UPDATE tags
+        SET text = %(text)s
+        WHERE id = %(id)s;
+        """
+        return connectToMySQL(cls.DB).query_db(query, data)
+
+    @classmethod
+    def delete(cls, data):
+        query = """
+        DELETE FROM tags
+        WHERE id = %(id)s;
+        """
+        return connectToMySQL(cls.DB).query_db(query, data)

@@ -26,8 +26,8 @@ def dashboard():
 
         all_user_content = user.User.get_all_user_content(data)
         for item in all_user_content:
-            print(item)
-            print("")
+            # print(item)
+            # print("")
             if (item["text"] not in tag_names):
                 tag_names.append(item["text"])
                 all_tags.append({

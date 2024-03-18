@@ -95,3 +95,24 @@ def add_tag(tagType):
         # Join tag with note
         tag.Tag.join_to_note({"note_id": current_page_id, "tag_id": new_tag_id})
     return {"id": new_tag_id}
+
+
+@app.route("/tags/<int:tagId>/update", methods=["POST"])
+def update_tag(tagId):
+    data = {
+        "id": tagId,
+        "text": request.json["text"]
+    }
+    # return redirect(f"/tags/{data['id']}")
+    return tag.Tag.update(data)
+
+
+@app.route("/tags/<int:id>/delete", methods=["POST"])
+def delete_tag(id):
+    print("IN DA CONTROLLRR -- id: ", id)
+    data = {
+        "id": id
+    }
+    res = tag.Tag.delete(data)
+    print("res: ", res)
+    return redirect("/dashboard")
