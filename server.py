@@ -1,6 +1,6 @@
 from flask_app import app
 
-from flask_app.controllers import users, dashboard, tags, notes
+from flask_app.controllers import users, dashboard, tags, notes, contacts
 
 if __name__ == "__main__":
     app.run(debug=True)

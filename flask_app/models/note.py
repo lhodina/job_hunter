@@ -20,4 +20,12 @@ class Note:
         """
         return connectToMySQL(cls.DB).query_db(query, data)
 
-
+    @classmethod
+    def get_contact(cls, data):
+        query = """
+        SELECT * FROM notes
+        LEFT JOIN tags_join_notes ON tags_join_notes.note_id = notes.id
+        LEFT JOIN tags ON tags.id = tags_join_notes.tag_id
+        WHERE notes.id = %(id)s;
+        """
+        return connectToMySQL(cls.DB).query_db(query, data)

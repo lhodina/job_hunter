@@ -1,4 +1,4 @@
-from flask import redirect, request, session
+from flask import request, session
 
 from flask_app import app
 from flask_app.models import note, tag
