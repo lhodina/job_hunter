@@ -20,14 +20,12 @@ def get_tag(tag_id):
     elif (category_id == 4):
         category = "Location"
 
-
     related_tags = []
     related_tag_ids = []
     notes = []
     note_ids = []
 
     for item in current_tag:
-        print(item)
         if (item["related_tags.id"] and item["related_tags.id"] not in related_tag_ids):
             related_tag_ids.append(item["related_tags.id"])
             relatedTag = {}
@@ -74,19 +72,14 @@ def add_tag(tagType):
         category_id = 3
     elif (tagType == "Location"):
         category_id = 4
-    print("category_id: ", category_id)
     data = {
         "text": request.json["text"],
         "category_id": category_id,
         "user_id": session["user"]["id"]
     }
     new_tag_id = tag.Tag.save(data)
-    print("new_tag_id: ", new_tag_id)
-
     current_page_category = request.json["currentPageCategory"]
     current_page_id = request.json["currentPageId"]
-    # print("current_page_category: ", current_page_category)
-    # print("current_page_id: ", current_page_id)
     # After the new tag has been created, check if it is also being joined to an existing tag or note (contact):
     if (current_page_category in ["Interest", "Company", "Location"]):
         # Join tag with tag
@@ -101,18 +94,16 @@ def add_tag(tagType):
 def update_tag(tagId):
     data = {
         "id": tagId,
-        "text": request.json["text"]
+        "text": request.json["formText"]
     }
-    # return redirect(f"/tags/{data['id']}")
-    return tag.Tag.update(data)
+    tag.Tag.update(data)
+    return redirect("/dashboard")
 
 
 @app.route("/tags/<int:id>/delete", methods=["POST"])
 def delete_tag(id):
-    print("IN DA CONTROLLRR -- id: ", id)
     data = {
         "id": id
     }
-    res = tag.Tag.delete(data)
-    print("res: ", res)
+    tag.Tag.delete(data)
     return redirect("/dashboard")
