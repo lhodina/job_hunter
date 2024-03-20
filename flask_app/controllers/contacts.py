@@ -34,3 +34,21 @@ def get_contact(id):
         "companies": companies,
         "locations": locations
     }
+
+@app.route("/contacts", methods=["POST"])
+def add_contact():
+    print("CONTROLLER - request.json: ", request.json)
+
+    data = {
+        "user_id": session["user"]["id"],
+        "text": request.json["description"],
+        "link_text": request.json["name"],
+        "link_url": request.json["linkedInUrl"],
+        "category_id": 2
+    }
+    print("CONTROLLER data: ", data)
+    note_id = note.Note.save(data)
+    print("CONTROLLER note_id: ", note_id)
+    if (request.json["currentPageId"]):
+        tag.Tag.join_to_note({"tag_id": request.json["currentPageId"], "note_id": note_id})
+    return {"id": note_id}
