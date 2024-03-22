@@ -78,7 +78,7 @@ def add_tag(tagType):
         "user_id": session["user"]["id"]
     }
     new_tag_id = tag.Tag.save(data)
-    current_page_category = request.json["currentPageCategory"]
+    current_page_category = request.json["currentPage"]
     current_page_id = request.json["currentPageId"]
     # After the new tag has been created, check if it is also being joined to an existing tag or note (contact):
     if (current_page_category in ["Interest", "Company", "Location"]):

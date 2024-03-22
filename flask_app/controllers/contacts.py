@@ -1,4 +1,4 @@
-from flask import request, session
+from flask import redirect, request, session
 
 from flask_app import app
 from flask_app.models import note, tag
@@ -19,8 +19,6 @@ def get_contact(id):
                 "category_id": item["tags.category_id"]
             }
             tags.append(current_tag)
-        # print(item)
-        # print("")
 
     interests = list(filter(lambda d: d["category_id"] == 1, tags))
     companies = list(filter(lambda d: d["category_id"] == 3, tags))
@@ -38,7 +36,6 @@ def get_contact(id):
 @app.route("/contacts", methods=["POST"])
 def add_contact():
     print("CONTROLLER - request.json: ", request.json)
-
     data = {
         "user_id": session["user"]["id"],
         "text": request.json["description"],
@@ -52,3 +49,26 @@ def add_contact():
     if (request.json["currentPageId"]):
         tag.Tag.join_to_note({"tag_id": request.json["currentPageId"], "note_id": note_id})
     return {"id": note_id}
+
+
+@app.route("/contacts/<int:contactId>/update", methods=["POST"])
+def update_contact(contactId):
+    print("CONTROLLER - request.json: ", request.json)
+    data = {
+        "user_id": session["user"]["id"],
+        "contact_id": contactId,
+        "link_text": request.json["name"],
+        "link_url": request.json["linkedInUrl"],
+        "category_id": 2
+    }
+    note_id = note.Note.update_contact(data)
+    return {"id": note_id}
+
+
+@app.route("/contacts/<int:id>/delete", methods=["POST"])
+def delete_contact(id):
+    data = {
+        "id": id
+    }
+    note.Note.delete(data)
+    return redirect("/dashboard")
