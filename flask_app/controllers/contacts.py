@@ -65,6 +65,19 @@ def update_contact(contactId):
     return {"id": note_id}
 
 
+@app.route("/contacts/<int:contactId>/description/update", methods=["POST"])
+def update_contact_description(contactId):
+    print("CONTROLLER - request.json: ", request.json)
+    data = {
+        "user_id": session["user"]["id"],
+        "contact_id": contactId,
+        "text": request.json["description"],
+        "category_id": 2
+    }
+    note_id = note.Note.update_contact_description(data)
+    return {"id": note_id}
+
+
 @app.route("/contacts/<int:id>/delete", methods=["POST"])
 def delete_contact(id):
     data = {

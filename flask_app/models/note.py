@@ -42,6 +42,16 @@ class Note:
         return connectToMySQL(cls.DB).query_db(query, data)
 
     @classmethod
+    def update_contact_description(cls, data):
+        query = """
+        UPDATE notes
+        SET
+        text = %(text)s
+        WHERE id = %(contact_id)s;
+        """
+        return connectToMySQL(cls.DB).query_db(query, data)
+
+    @classmethod
     def delete(cls, data):
         query = """
         DELETE FROM notes
