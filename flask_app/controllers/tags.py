@@ -62,6 +62,26 @@ def get_tag(tag_id):
         "notes": user_notes
     }
 
+# Need to get all user content on Tag page so that it is available in the combo box for the user to select from existing
+@app.route("/tags/<string:tagType>")
+def get_all_tags(tagType):
+    user_id = session["user"]["id"]
+    category_id = None
+    if (tagType == "Interest"):
+        category_id = 1
+    elif (tagType == "Company"):
+        category_id = 3
+    elif (tagType == "Location"):
+        category_id = 4
+    data = {
+        "user_id": user_id,
+        "category_id": category_id
+    }
+    all_tags = tag.Tag.get_all_tags_in_category(data)
+    print("all_tags: ", all_tags)
+    return {"all_tags": all_tags}
+
+
 
 @app.route("/tags/<string:tagType>", methods=["POST"])
 def add_tag(tagType):

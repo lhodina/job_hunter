@@ -20,11 +20,11 @@ class Tag:
         return connectToMySQL(cls.DB).query_db(query, data)
 
     @classmethod
-    def get_all_tags(cls, data):
+    def get_all_tags_in_category(cls, data):
         all_tags = []
         query = """
         SELECT * FROM tags
-        WHERE user_id = %(user_id)s OR user_id = 1;
+        WHERE user_id = %(user_id)s AND category_id = %(category_id)s;
         """
         results = connectToMySQL(cls.DB).query_db(query, data)
         for result in results:

@@ -31,6 +31,14 @@ class Note:
         return connectToMySQL(cls.DB).query_db(query, data)
 
     @classmethod
+    def get_all_contacts(cls, data):
+        query = """
+        SELECT * FROM notes
+        WHERE category_id = 2 AND user_id = %(user_id)s;
+        """
+        return connectToMySQL(cls.DB).query_db(query, data)
+
+    @classmethod
     def update_contact(cls, data):
         query = """
         UPDATE notes

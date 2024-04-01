@@ -33,6 +33,18 @@ def get_contact(id):
         "locations": locations
     }
 
+
+@app.route("/contacts")
+def get_all_contacts():
+    user_id = session["user"]["id"]
+    data = {
+        "user_id": user_id
+    }
+    all_contacts = note.Note.get_all_contacts(data)
+    print("all_contacts: ", all_contacts)
+    return {"all_contacts": all_contacts}
+
+
 @app.route("/contacts", methods=["POST"])
 def add_contact():
     print("CONTROLLER - request.json: ", request.json)
