@@ -44,6 +44,14 @@ class Tag:
         return connectToMySQL(cls.DB).query_db(query, data)
 
     @classmethod
+    def get_by_name(cls, data):
+        query = """
+        SELECT * FROM tags
+        WHERE text = %(text)s AND user_id = %(user_id)s;
+        """
+        return connectToMySQL(cls.DB).query_db(query, data)
+
+    @classmethod
     def join_to_tag(cls, data):
         query = """
         INSERT INTO tags_join_tags(tag_id_1, tag_id_2)

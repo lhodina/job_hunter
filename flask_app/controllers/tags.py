@@ -97,7 +97,15 @@ def add_tag(tagType):
         "category_id": category_id,
         "user_id": session["user"]["id"]
     }
-    new_tag_id = tag.Tag.save(data)
+
+    # Check for existing tag or else create a new one
+    existing = tag.Tag.get_by_name(data)
+    new_tag_id = None
+    if existing:
+        new_tag_id = existing[0]["id"]
+    else:
+        new_tag_id = tag.Tag.save(data)
+
     current_page_category = request.json["currentPage"]
     current_page_id = request.json["currentPageId"]
     # After the new tag has been created, check if it is also being joined to an existing tag or note (contact):
